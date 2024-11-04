@@ -1,13 +1,15 @@
 import time
 import pandas as pd
-from crawler import get_data
+from crawler import get_transactions
 from model import Base
 from config import engine
 
 if __name__ == "__main__":
-    start = time.perf_counter()
     Base.metadata.create_all(engine)
-    data = get_data()
+    start = time.perf_counter()
+    data = get_transactions()
+    df = pd.DataFrame(data,columns=["code","date","last_price","max_price","min_price","avg_price","cash_flow_per","amount","cash_flow"])
+    df.fillna(0, inplace=True)
+    df.to_sql('StockTransaction', con=engine, if_exists='append', index=False)
     end = time.perf_counter()
-    time_duration = end - start
-    print(f'The extraction and the writing took {time_duration:.3f}s')
+    print(f'The extraction and the writing took {end - start:.3f}s')
