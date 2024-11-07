@@ -3,7 +3,7 @@ from ..utils import get_start_date
 from datetime import datetime
 from ..config import Session
 from ..models import StockTransaction
-from scrapy.http import Response,FormRequest
+from scrapy.http import Response ,FormRequest
 
 class StockSpider(scrapy.Spider):
     name = 'stock-spider'
