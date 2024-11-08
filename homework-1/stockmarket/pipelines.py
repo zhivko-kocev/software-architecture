@@ -1,12 +1,8 @@
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-from stockmarket.config import  Session
-from stockmarket.models.stock_transaction import StockTransaction
+from .config import  Session
+from .models import StockTransaction
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
+#from itemadapter import ItemAdapter
 
 
 class StockmarketPipeline:
