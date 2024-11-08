@@ -40,7 +40,11 @@ class StockSpider(scrapy.Spider):
                     else to_date.strftime("%d.%m.%Y")
                 )
 
-                formdata = {"FromDate": f, "ToDate": t, "Code": code}
+                formdata = {
+                    "FromDate": f,
+                    "ToDate": t,  # tuka datetime(day=1,month=10,year=2024).strftime("%d.%m.%Y")
+                    "Code": code,
+                }
 
                 yield FormRequest(
                     url=response.url,
