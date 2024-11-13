@@ -26,6 +26,8 @@ class StockSpider(scrapy.Spider):
             if not any(char.isdigit() for char in code)
         ]
 
+        print(len(self.codes))
+
         for code in self.codes:
             from_date, to_date = get_start_date(code, self.session)
 
@@ -59,6 +61,10 @@ class StockSpider(scrapy.Spider):
         rows = response.xpath("//table[@id='resultsTable']/tbody/tr")
         for row in rows:
             values = [td.xpath(".//text()").get() for td in row.xpath(".//td")]
+
+            # if not values[2] or not values[3]:
+            #     continue
+
             model = StockTransaction(
                 code=code,
                 date=datetime.strptime(values[0], "%d.%m.%Y"),

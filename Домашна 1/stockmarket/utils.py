@@ -10,7 +10,7 @@ def get_start_date(code,session):
      today = datetime.today()
         
      if not last_scraped:
-        from_date = today.replace(year=today.year-10,day=today.day+1)
+        from_date = today.replace(year=today.year-11,day=today.day+1)
      else:
         from_date = last_scraped.date.replace(day=last_scraped.date.day+1)
         
